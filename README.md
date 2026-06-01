@@ -405,4 +405,4 @@ ln -sf /etc/pam.d /home/z/pam-link
 
 ---
 
-> **Edukasi keamanan siber.** Hanya gunakan pada sistem yang Anda miliki atau memiliki izin eksplisit.
+> **Hanya boleh digunakan di z.**
