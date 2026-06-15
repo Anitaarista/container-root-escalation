@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.php.net/releases/index.php",
+    "name": "Releases - PHP",
+    "snippet": "Please note that older releases are listed for archival purposes only, and they are no longer supported. 8.4.21. Released: 07 May 2026; Announcement: English ...",
+    "host_name": "www.php.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://php.watch/versions/8.3/releases",
+    "name": "PHP 8.3 Releases",
+    "snippet": "PHP 8.3 reaches End Of Life (EOL). 2027-12-31 ; PHP 8.3.31 Security Update Latest. 2026-05-05 ; PHP 8.3.30 Security Update. 2026-01-15 ; PHP 8.3 active support ...",
+    "host_name": "php.watch",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.zend.com/resources/php-versions",
+    "name": "Current PHP Versions | The Evolution & History of PHP - Zend",
+    "snippet": "PHP 8.3. While PHP 8.3 included a number of new changes to the language, it has relatively fewer features compared to PHP 8.1 or 8.2. It released on November ...",
+    "host_name": "www.zend.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/php/php-src/releases",
+    "name": "Releases · php/php-src - GitHub",
+    "snippet": "The PHP development team announces the immediate availability of PHP 8.3.31. This is a security release. All PHP 8.3 users are encouraged to upgrade to this ...",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/PHPhelp/comments/1s7dl22/update_php_especially_if_you_are_running_83_or",
+    "name": "Update PHP. Especially if you are running 8.3 or older. Here's why.",
+    "snippet": "Today I upgraded PHP to their latest stable build and upgraded the SQL drivers for PHP that supports the latest build. Holy crap am I pleased.",
+    "host_name": "www.reddit.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

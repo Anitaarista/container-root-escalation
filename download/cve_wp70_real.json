@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.wordfence.com/blog/2026/04/wordfence-intelligence-weekly-wordpress-vulnerability-report-april-13-2026-to-april-19-2026",
+    "name": "Wordfence Intelligence Weekly WordPress Vulnerability Report",
+    "snippet": "Wordfence Intelligence Weekly WordPress Vulnerability Report (April 13, 2026 to April 19, 2026) ... CVE-2026-4880. Patch Status Patched. Published",
+    "host_name": "www.wordfence.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sentinelone.com/vulnerability-database/cve-2026-1830",
+    "name": "CVE-2026-1830: WordPress Quick Playground RCE Vulnerability",
+    "snippet": "CVE-2026-1830 is a remote code execution vulnerability in the Quick Playground WordPress plugin that allows unauthenticated attackers to upload ...",
+    "host_name": "www.sentinelone.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-5234",
+    "name": "CVE-2026-5234 Detail - NVD",
+    "snippet": "Description. The LatePoint plugin for WordPress is vulnerable to Insecure Direct Object Reference in all versions up to, and including, ...",
+    "host_name": "nvd.nist.gov",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.liquidweb.com/?p=447786",
+    "name": "WordPress Vulnerability Report March 25, 2026 - Liquid Web",
+    "snippet": "In this report, 331 vulnerabilities have been publicly disclosed. Security patches for 211 of these plugins and themes are now available.",
+    "host_name": "www.liquidweb.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.truesec.com/hub/blog/critical-vulnerability-in-ninja-forms-file-upload-wordpress-plugin-cve-2026-07409",
+    "name": "Critical Vulnerability in \"Ninja Forms\" WordPress Plugin - Truesec",
+    "snippet": "The vulnerability is an arbitrary file upload flaw caused by insufficient validation of destination filenames during the upload process.",
+    "host_name": "www.truesec.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patchstack.com/whitepaper/state-of-wordpress-security-in-2026",
+    "name": "State of WordPress Security in 2026 - Patchstack",
+    "snippet": "In 2026, every commercial WordPress plugin will need to have a vulnerability disclosure program (VDP) set up by law in order to make their ...",
+    "host_name": "patchstack.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://premiersol.co/blog/wordpress-7-0-security-updates-hardening-tips",
+    "name": "WordPress 7.0 Security Updates: Hardening Tips - Premier Solutions",
+    "snippet": "Explore essential WordPress 7.0 security updates. Learn expert hardening tips, AI client security, and ways to protect your wp-config file ...",
+    "host_name": "premiersol.co",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/posts/oliversild_state-of-wordpress-security-in-2026-security-activity-7433120914797412352-4Hok",
+    "name": "Oliver Sild - State of WordPress Security in 2026 - LinkedIn",
+    "snippet": "Wrapped up the analysis on 2025 WordPress security & vulnerability data. Keeping this ecosystem secure will become exponentially harder.",
+    "host_name": "www.linkedin.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://developress.io/wordpress-security-update-january-2026-critical-patches-roadmap-to-7-0",
+    "name": "WordPress Security Update Jan 2026: Patches & WP 7.0",
+    "snippet": "Stay safe with the Jan 2026 WordPress security update. Critical plugin patches, WP 7.0 roadmap, and mandatory PHP 7.4+ requirements.",
+    "host_name": "developress.io",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.tenable.com/cve/CVE-2026-6692",
+    "name": "CVE-2026-6692 | Tenable®",
+    "snippet": "The Slider Revolution plugin for WordPress is vulnerable to Arbitrary File Upload in versions 7.0.0 to 7.0.10 via the '_get_media_url' and ...",
+    "host_name": "www.tenable.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
