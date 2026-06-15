@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-6742",
+    "name": "CVE-2025-6742 Detail - NVD",
+    "snippet": "The SureForms – Drag and Drop Form Builder for WordPress plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 1.7.3",
+    "host_name": "nvd.nist.gov",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wordfence.com/threat-intel/vulnerabilities/wordpress-plugins/sureforms/sureforms-drag-and-drop-form-builder-for-wordpress-173-unauthenticated-arbitrary-file-deletion-triggered-via-administrator-submission-deletion",
+    "name": "SureForms – Drag and Drop Form Builder for WordPress <= 1.7.3",
+    "snippet": "The SureForms – Drag and Drop Form Builder for WordPress plugin for WordPress is vulnerable to arbitrary file deletion due to insufficient file path validation.",
+    "host_name": "www.wordfence.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/advisories/GHSA-6p3q-9mgc-93rh",
+    "name": "The SureForms plugin for WordPress is vulnerable to · CVE-2025",
+    "snippet": "The SureForms plugin for WordPress is vulnerable to Stored Cross-Site Scripting 2.2.0 due to insufficient input sanitization and output ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cvedetails.com/cve/CVE-2025-5921",
+    "name": "Vulnerability Details : CVE-2025-5921 - Sureforms",
+    "snippet": "CVE-2025-5921 : The SureForms WordPress plugin before 1.7.2 does not sanitise and escape a parameter before outputting it back in the page, ...",
+    "host_name": "www.cvedetails.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://securityonline.info/sureforms-wordpress-plugin-flaw-cve-2025-6691-unauthenticated-arbitrary-file-deletion-leads-to-site-takeover-200k-site-at-risks",
+    "name": "SureForms WordPress Plugin Flaw (CVE-2025-6691)",
+    "snippet": "At the core of the vulnerability is the plugin's flawed file handling process in the delete_entry_files() function, which is used to clean up ...",
+    "host_name": "securityonline.info",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://research.cleantalk.org/cve-2025-3513",
+    "name": "CVE-2025-3513 - SureForms - Stored XSS to JS Backdoor Creation",
+    "snippet": "This flaw enables a user with editor-level privileges to inject persistent JavaScript into the form confirmation message.",
+    "host_name": "research.cleantalk.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/posts/deepankerverma_critical-security-flaw-in-sureforms-plugin-activity-7349356162082893824-ZPfc",
+    "name": "SureForms Plugin Vulnerability Affects 200,000+ WordPress Sites",
+    "snippet": "A serious flaw was discovered in the popular WordPress plugin SureForms, affecting over 2 lakh websites worldwide. This vulnerability",
+    "host_name": "www.linkedin.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.truesec.com/hub/blog/critical-vulnerability-in-ninja-forms-file-upload-wordpress-plugin-cve-2026-07409",
+    "name": "Critical Vulnerability in \"Ninja Forms\" WordPress Plugin - Truesec",
+    "snippet": "The vulnerability is an arbitrary file upload flaw caused by insufficient validation of destination filenames during the upload process.",
+    "host_name": "www.truesec.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Wordpress/comments/1elie04/i_found_300_vulnerabilities_in_wordpress_plugins",
+    "name": "I found 300+ vulnerabilities in WordPress plugins, Ask Me Anything!",
+    "snippet": "I found more than 300 vulnerabilities in WordPress plugins, ranging from small ones to very popular ones that everybody knows and uses.",
+    "host_name": "www.reddit.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-6691",
+    "name": "NVD - CVE-2025-6691",
+    "snippet": "The SureForms – Drag and Drop Form Builder for WordPress plugin for WordPress is vulnerable to arbitrary file deletion due to insufficient file path validation in the delete_entry_files () function in all versions up to, and including, 1.7.3.",
+    "host_name": "nvd.nist.gov",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

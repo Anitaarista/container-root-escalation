@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://wpscan.com/vulnerability/9c1d386f-a55b-4042-8f1b-f37c508cdeb1",
+    "name": "Site Kit by Google < 1.8.0 - WordPress Plugin Vulnerabilities - WPScan",
+    "snippet": "This flaw allows any authenticated user, regardless of capability, to become a Google Search Console owner for any site running the Site Kit by Google plugin.\nSee details on Site Kit by Google < 1.8.0 - Privilege Escalation to gain Search Console Access CVE 2020-8934. View the latest Plugin Vulnerabilities on WPScan.",
+    "host_name": "wpscan.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.acunetix.com/vulnerabilities/web/wordpress-plugin-site-kit-by-google-security-bypass-1-7-1",
+    "name": "WordPress Plugin Site Kit by Google Security Bypass (1.7.1) - Acunetix",
+    "snippet": "WordPress Plugin Site Kit by Google is prone to a security bypass vulnerability. Exploiting this issue may allow attackers to perform otherwise restri.",
+    "host_name": "www.acunetix.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Wordpress/comments/1mc4t4c/potential_vulnerability_in_google_site_kit",
+    "name": "Potential vulnerability in Google Site Kit? : r/Wordpress - Reddit",
+    "snippet": "To summarize, there is no security issue with Site Kit and connecting with your Google account. Best practice would certainly not to share the ...",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wordfence.com/threat-intel/vulnerabilities/wordpress-plugins/google-site-kit",
+    "name": "Site Kit by Google – Analytics, Search Console, AdSense, Speed",
+    "snippet": "Want to get notified of the latest vulnerabilities that may affect your WordPress site? Install Wordfence on your site today to get notified immediately if ...",
+    "host_name": "www.wordfence.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wordpress.org/support/topic/vulnerability-detected-6",
+    "name": "Vulnerability detected - WordPress.org",
+    "snippet": "... vulnerability in the Google Site Kit plugin. google-site-kit version 1.124.0 that is located at /public_html has vulnerability(s):. CVE-2020-8934. Viewing 2 ...",
+    "host_name": "wordpress.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/advisories/GHSA-336c-xvxh-5c25",
+    "name": "The Site Kit by Google plugin for WordPress is vulnerable - GitHub",
+    "snippet": "The Site Kit by Google plugin for WordPress is vulnerable to Sensitive Information Disclosure in versions up to, and including, 1.8.0.",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.rapid7.com/db/vulnerabilities/sitekit-plugin-cve-2025-50047",
+    "name": "WordPress Plugin: sitekit: CVE-2025-50047 - Rapid7",
+    "snippet": "The Sitekit plugin for WordPress is vulnerable to Stored Cross-Site Scripting in versions up to, and including, 1.9 due to insufficient input sanitization ...",
+    "host_name": "www.rapid7.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://research.cleantalk.org/plugin-security-certification-site-kit-by-google-version-1-131-0-use-cool-site-kits-with-enhanced-security",
+    "name": "Version 1.168.0: Use Cool Site Kits with Enhanced Security",
+    "snippet": "“Site Kit by Google” plugin, version 1.168.0, has successfully passed the Plugin Security Certification (PSC) from CleanTalk.",
+    "host_name": "research.cleantalk.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wordfence.com/blog/2020/05/vulnerability-in-google-wordpress-plugin-grants-attacker-search-console-access",
+    "name": "Vulnerability in Google WordPress Plugin Grants Attacker Search",
+    "snippet": "This flaw allows any authenticated user, regardless of capability, to become a Google Search Console owner for any site running the Site Kit by Google plugin.",
+    "host_name": "www.wordfence.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://app.opencve.io/cve/?product=site_kit&vendor=google",
+    "name": "Site Kit CVEs and Security Vulnerabilities - OpenCVE",
+    "snippet": "Explore the latest vulnerabilities and security issues of Site Kit in the CVE database",
+    "host_name": "app.opencve.io",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

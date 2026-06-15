@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.wordfence.com/blog/2026/01/wordfence-intelligence-weekly-wordpress-vulnerability-report-january-19-2026-to-january-25-2026",
+    "name": "Wordfence Intelligence Weekly Vulnerability Report January 19, 2026",
+    "snippet": "Last week, there were 215 vulnerabilities disclosed in 180 WordPress Plugins and 17 WordPress Themes that have been added to the Wordfence ...",
+    "host_name": "www.wordfence.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-58246",
+    "name": "CVE-2025-58246 Detail - NVD",
+    "snippet": "Insertion of Sensitive Information Into Sent Data vulnerability in WordPress allows Retrieve Embedded Sensitive Data. The WordPress Core ...",
+    "host_name": "nvd.nist.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sentinelone.com/vulnerability-database/cve-2025-14842",
+    "name": "CVE-2025-14842: WordPress Contact Form 7 RCE Vulnerability",
+    "snippet": "CVE-2025-14842 is a remote code execution vulnerability in Drag and Drop Multiple File Upload plugin. Learn about its impact, ...",
+    "host_name": "www.sentinelone.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hadrian.io/blog/cve-2025-7384-critical-wordpress-plugin-unauthenticated-rce",
+    "name": "CVE-2025-7384: Critical WordPress Plugin Unauthenticated RCE",
+    "snippet": "Read more about CVE-2025-7384 could enable unauthenticated attackers to execute dangerous exploits, potentially leading to site wide denial ...",
+    "host_name": "hadrian.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patchstack.com/whitepaper/state-of-wordpress-security-in-2026",
+    "name": "State of WordPress Security in 2026 - Patchstack",
+    "snippet": "Then there are reactive solutions - malware detection and cleanup. The WordPress ecosystem has been far too reliant on treating security as ...",
+    "host_name": "patchstack.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/Nxploited/CVE-2025-25101",
+    "name": "Nxploited/CVE-2025-25101: WordPress Munk Sites plugin <= 1.0.7",
+    "snippet": "This vulnerability allows an unauthenticated attacker to trick an admin into installing and activating arbitrary plugins, potentially leading to Remote Code ...",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zeropath.com/blog/cve-2025-10726-wprecovery-sql-injection-arbitrary-file-deletion",
+    "name": "WPRecovery Plugin CVE-2025-10726: SQL Injection and Arbitrary",
+    "snippet": "This post provides a brief summary and technical review of CVE-2025-10726, a critical SQL injection and arbitrary file deletion ...",
+    "host_name": "zeropath.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cve.org/CVERecord?id=CVE-2025-58674",
+    "name": "CVE-2025-58674 - CVE Record",
+    "snippet": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in WordPress allows Stored XSS. WordPress ...",
+    "host_name": "www.cve.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.rapid7.com/db/vulnerabilities/coming-soon-plugin-cve-2025-3949",
+    "name": "WordPress Plugin: coming-soon: CVE-2025-3949 - Rapid7",
+    "snippet": "The Website Builder by SeedProd — Theme Builder, Landing Page Builder, Coming Soon Page, Maintenance Mode plugin for WordPress is vulnerable to unauthorized ...",
+    "host_name": "www.rapid7.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.liquidweb.com/blog/wordpress-vulnerability-report-april-8-2026",
+    "name": "WordPress Vulnerability Report April 8, 2026 - Liquid Web",
+    "snippet": "Each week, we report the latest vulnerabilities in WordPress plugins and themes. Vulnerable WordPress plugins and themes are among the ...",
+    "host_name": "www.liquidweb.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
