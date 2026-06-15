@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://wpscan.com/plugin/litespeed-cache",
+    "name": "LiteSpeed Cache WordPress Plugin Security Vulnerabilities - WPScan",
+    "snippet": "Discover the latest security vulnerabilities affecting LiteSpeed Cache. With WPScan, protect your WordPress site from LiteSpeed Cache plugin exploits.",
+    "host_name": "wpscan.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patchstack.com/articles/critical-account-takeover-vulnerability-patched-in-litespeed-cache-plugin",
+    "name": "Critical Account Takeover in LiteSpeed Cache Plugin - Patchstack",
+    "snippet": "The plugin suffers from an unauthenticated account takeover vulnerability which allows any unauthenticated visitor to gain authentication access ...",
+    "host_name": "patchstack.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.litespeedtech.com/2026/05/27/security-update-for-lscwp-cve-2026-3375",
+    "name": "Security Update for LSCWP - LiteSpeed Blog",
+    "snippet": "We have a security update for LiteSpeed Cache for WordPress. This cross-site scripting vulnerability has been assigned CVE-2026-3375.",
+    "host_name": "blog.litespeedtech.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/absholi7ly/CVE-2024-44000-LiteSpeed-Cache",
+    "name": "absholi7ly/CVE-2024-44000-LiteSpeed-Cache - GitHub",
+    "snippet": "CVE-2024-44000 is a vulnerability in the LiteSpeed Cache plugin, a popular WordPress plugin. This vulnerability affects session management in LiteSpeed Cache.",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.broadcom.com/support/security-center/attacksignatures/detail?asid=34634",
+    "name": "Attack: WordPress LiteSpeed Cache Plugin XSS CVE-2023-40000",
+    "snippet": "The LiteSpeed Cache plugin for WordPress is vulnerable to Stored Cross-Site Scripting due to insufficient input sanitization and output escaping.",
+    "host_name": "www.broadcom.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.exploit-db.com/exploits/52328",
+    "name": "Litespeed Cache WordPress Plugin 6.3.0.1 - Privilege Escalation",
+    "snippet": "Litespeed Cache WordPress Plugin 6.3.0.1 - Privilege Escalation. CVE-2024-28000 . webapps exploit for PHP platform.",
+    "host_name": "www.exploit-db.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cyber.gov.rw/updates/article/alert-wordpress-litespeed-plugin-security-updates",
+    "name": "Alert: WordPress LiteSpeed Plugin Security Updates",
+    "snippet": "This vulnerability, designated as CVE-2023-40000, presents a significant security risk, potentially allowing threat actors to compromise affected websites and ...",
+    "host_name": "cyber.gov.rw",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wordpress.org/support/topic/i-am-told-again-by-wordpress-about-vulnerabilities-in-litespeed-cache",
+    "name": "I am told again by WordPress about vulnerabilities in Litespeed Cache",
+    "snippet": "Vulnerabilities have been discovered in your installed version of the LiteSpeed Cache plugin. Please update to the latest version (v6.5+) as ...",
+    "host_name": "wordpress.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sentinelone.com/vulnerability-database/cve-2024-28000",
+    "name": "CVE-2024-28000: LiteSpeed Cache Privilege Escalation Flaw",
+    "snippet": "CVE-2024-28000 is a critical privilege escalation vulnerability affecting the LiteSpeed Cache plugin for WordPress. This incorrect privilege ...",
+    "host_name": "www.sentinelone.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wordfence.com/blog/2024/08/over-5000000-site-owners-affected-by-critical-privilege-escalation-vulnerability-patched-in-litespeed-cache-plugin",
+    "name": "Over 5,000,000 Site Owners Affected by Critical Privilege Escalation",
+    "snippet": "In this blog post, we detailed a privilege escalation vulnerability within the LiteSpeed Cache plugin affecting versions 6.3.0.1 and earlier.",
+    "host_name": "www.wordfence.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

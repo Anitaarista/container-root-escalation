@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-12450",
+    "name": "CVE-2025-12450 Detail - NVD",
+    "snippet": "The LiteSpeed Cache plugin for WordPress is vulnerable to Reflected Cross-Site Scripting via URLs in all versions up to, and including, 7.5.",
+    "host_name": "nvd.nist.gov",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sentinelone.com/vulnerability-database/cve-2025-12450",
+    "name": "CVE-2025-12450: LiteSpeed Cache WordPress Plugin XSS Flaw",
+    "snippet": "CVE-2025-12450 is a reflected XSS vulnerability in LiteSpeed Cache for WordPress. Learn about its impact, affected versions, and mitigation ...",
+    "host_name": "www.sentinelone.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wordfence.com/threat-intel/vulnerabilities/wordpress-plugins/litespeed-cache/litespeed-cache-7501-reflected-cross-site-scripting",
+    "name": "LiteSpeed Cache <= 7.5.0.1 - Reflected Cross-Site Scripting",
+    "snippet": "The LiteSpeed Cache plugin for WordPress is vulnerable to Reflected Cross-Site Scripting via URLs in all versions up to, and including, 7.5.0.1 ...",
+    "host_name": "www.wordfence.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dbugs.ptsecurity.com/vulnerability/PT-2025-44269",
+    "name": "CVE-2025-12450 — XSS in Litespeed Cache | dbugs",
+    "snippet": "The LiteSpeed Cache plugin for WordPress is susceptible to Reflected Cross-Site Scripting through URLs. This is caused by inadequate input ...",
+    "host_name": "dbugs.ptsecurity.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patchstack.com/articles/unauthenticated-stored-xss-vulnerability-in-litespeed-cache-plugin-affecting-6-million-sites",
+    "name": "Stored XSS Vulnerability in LiteSpeed Cache Plugin - Patchstack",
+    "snippet": "This plugin suffers from unauthenticated stored XSS vulnerability. It could allow any unauthenticated user from stealing sensitive information ...",
+    "host_name": "patchstack.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

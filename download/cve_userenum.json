@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://github.com/K3ysTr0K3R/CVE-2017-5487-EXPLOIT",
+    "name": "CVE-2017-5487 - WordPress User Enumeration - GitHub",
+    "snippet": "The CVE-2017-5487 vulnerability in WordPress 4.7 before 4.7.1 exposes websites to potential information disclosure attacks through the REST API.",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.acunetix.com/vulnerabilities/web/wordpress-rest-api-user-enumeration",
+    "name": "WordPress REST API User Enumeration - Vulnerabilities - Acunetix",
+    "snippet": "Description. WordPress versions prior to 4.7.1 expose a REST API endpoint that allows unauthenticated users to enumerate registered user accounts.",
+    "host_name": "www.acunetix.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sentinelone.com/vulnerability-database/cve-2023-5561",
+    "name": "CVE-2023-5561: WordPress Information Disclosure Flaw",
+    "snippet": "CVE-2023-5561 is an information disclosure vulnerability in WordPress that allows attackers to discover email addresses of users via REST API ...",
+    "host_name": "www.sentinelone.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/cve-2025-4302",
+    "name": "CVE-2025-4302 Detail - NVD",
+    "snippet": "The Stop User Enumeration WordPress plugin before version 1.7.3 blocks REST API /wp-json/wp/v2/users/ requests for non-authorized users.",
+    "host_name": "nvd.nist.gov",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.reclaimhosting.com/t/urgent-security-alert-username-enumeration-vulnerability-found/6053",
+    "name": "Urgent Security Alert: Username Enumeration Vulnerability Found",
+    "snippet": "This flaw allows attackers to discern valid usernames by analyzing different system responses during login, password reset, or registration processes.",
+    "host_name": "forums.reclaimhosting.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-14180",
+    "name": "CVE-2025-14180 Detail - NVD",
+    "snippet": "Description. In PHP versions 8.1.* before 8.1.34, 8.2.* before 8.2.30, 8.3.* before 8.3.29, 8.4.* before 8.4.16, 8.5.",
+    "host_name": "nvd.nist.gov",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.hkcert.org/security-bulletin/php-multiple-vulnerabilities_20250319",
+    "name": "PHP Multiple Vulnerabilities",
+    "snippet": "Multiple vulnerabilities were identified in PHP. A remote attacker could exploit some of these vulnerabilities to trigger remote code execution.",
+    "host_name": "www.hkcert.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.tenable.com/plugins/was/115236",
+    "name": "PHP 8.3.x < 8.3.31 Multiple Vulnerabilities | Tenable®",
+    "snippet": "Vulnerability Publication Date: 5/5/2026. Reference Information. CVE: CVE-2025-14179, CVE-2026-42371, CVE-2026-6104, CVE-2026-6722, CVE-2026- ...",
+    "host_name": "www.tenable.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.herodevs.com/blog-posts/php-end-of-life-dates-support-timeline-for-every-version-2026",
+    "name": "PHP End-of-Life Dates: Support Timeline for Every Version (2026)",
+    "snippet": "PHP 8.3: Security Support Until December 31, 2027. PHP 8.3 entered security-only support at the end of 2025. It will continue receiving ...",
+    "host_name": "www.herodevs.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://my.f5.com/manage/s/article/K000150719",
+    "name": "K000150719: Multiple PHP vulnerabilities - MyF5 | Support",
+    "snippet": "K000150719: Multiple PHP vulnerabilities · CVE-2024-11235. In PHP versions 8.3.* before 8.3. · CVE-2025-1217. In PHP from 8.1.* before 8.1. · CVE- ...",
+    "host_name": "my.f5.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://access.redhat.com/security/cve/cve-2025-6491",
+    "name": "CVE-2025-6491 - Red Hat Customer Portal",
+    "snippet": "A vulnerability was found in PHP. If a SoapVar instance is created with a fully qualified name larger than 2G, this will cause a NULL ...",
+    "host_name": "access.redhat.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://talk.plesk.com/threads/multiple-vulnerabilities-in-php-5-thru-8-3-7-could-allow-for-remote-code-execution-patch-now.374639",
+    "name": "Multiple Vulnerabilities in PHP 5 thru 8.3.7 Could Allow for Remote",
+    "snippet": "Open-source reports have stated that proof of concept exploits are available for CVE-2024-4577. SYSTEMS AFFECTED: PHP versions: 5 - 8.3.7. RISK:",
+    "host_name": "talk.plesk.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vulners.com/openvas/OPENVAS:1361412562310154190",
+    "name": "PHP 8.3.x < 8.3.19, 8.4.x < 8.4.5 Multiple Vulnerabilities - Windows",
+    "snippet": "PHP 8.3.x < 8.3.19, 8.4.x < 8.4.5 Multiple Vulnerabilities - Windows ; FreeBSD, php -- Multiple vulnerabilities. 13 Mar 202500:00. –, freebsd.",
+    "host_name": "vulners.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tuxcare.com/blog/php-8-3-end-of-life",
+    "name": "PHP 8.3 End of Life: Key Dates, Risks & What to Do Next - TuxCare",
+    "snippet": "Active support ended on December 31, 2025 – which means PHP 8.3 is already in its security-only window. If you're running it today, you're ...",
+    "host_name": "tuxcare.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://security-tracker.debian.org/tracker/source-package/php7.4",
+    "name": "Information on source package php7.4 - Debian Security Tracker",
+    "snippet": "CVE-2026-7262, In PHP versions 8.2.* before 8.2.31, 8.3.* before 8.3.31, 8.4 ... CVE-2025-14179, In PHP versions 8.2.* before 8.2.31, 8.3.* before 8.3.31 ...",
+    "host_name": "security-tracker.debian.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

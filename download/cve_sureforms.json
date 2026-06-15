@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.wordfence.com/threat-intel/vulnerabilities/wordpress-plugins/sureforms/sureforms-220-unauthenticated-stored-cross-site-scripting",
+    "name": "SureForms <= 2.2.0 - Unauthenticated Stored Cross-Site Scripting",
+    "snippet": "The SureForms plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the form field parameters in all versions up to, and including, 2.2.0 due ...",
+    "host_name": "www.wordfence.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-6742",
+    "name": "CVE-2025-6742 Detail - NVD",
+    "snippet": "The SureForms – Drag and Drop Form Builder for WordPress plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 1.7.3",
+    "host_name": "nvd.nist.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.rapid7.com/db/vulnerabilities/sureforms-plugin-cve-2025-6742",
+    "name": "WordPress Plugin: sureforms: CVE-2025-6742 - Rapid7",
+    "snippet": "The SureForms – Drag and Drop Form Builder for WordPress plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 1.7.3",
+    "host_name": "www.rapid7.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/advisories/GHSA-6p3q-9mgc-93rh",
+    "name": "The SureForms plugin for WordPress is vulnerable to · CVE-2025",
+    "snippet": "The SureForms plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the form field parameters in all versions up to, and ...",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sentinelone.com/vulnerability-database/cve-2025-6679",
+    "name": "CVE-2025-6679: Bit Form WordPress Plugin RCE Vulnerability",
+    "snippet": "CVE-2025-6679 is a remote code execution flaw in Bit Form WordPress plugin allowing unauthenticated attackers to upload arbitrary files.",
+    "host_name": "www.sentinelone.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://access.redhat.com/security/cve/cve-2025-6691",
+    "name": "CVE-2025-6691 - Red Hat Customer Portal",
+    "snippet": "The SureForms – Drag and Drop Form Builder for WordPress plugin for WordPress is vulnerable to arbitrary file deletion due to insufficient file path validation",
+    "host_name": "access.redhat.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://securityonline.info/sureforms-wordpress-plugin-flaw-cve-2025-6691-unauthenticated-arbitrary-file-deletion-leads-to-site-takeover-200k-site-at-risks",
+    "name": "SureForms WordPress Plugin Flaw (CVE-2025-6691)",
+    "snippet": "At the core of the vulnerability is the plugin's flawed file handling process in the delete_entry_files() function, which is used to clean up ...",
+    "host_name": "securityonline.info",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://research.cleantalk.org/cve-2025-3471",
+    "name": "CVE-2025-3471 - SureForms - Broken Access Control to Settings",
+    "snippet": "CVE-2025-3471—a Broken Access Control vulnerability discovered in the SureForms plugin. SureForms improperly enforced access control on its ...",
+    "host_name": "research.cleantalk.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hadrian.io/blog/cve-2025-7384-critical-wordpress-plugin-unauthenticated-rce",
+    "name": "CVE-2025-7384: Critical WordPress Plugin Unauthenticated RCE",
+    "snippet": "CVE-2025-7384 is one of the most severe WordPress plugin vulnerabilities in recent years. It requires no authentication, allows destructive ...",
+    "host_name": "hadrian.io",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cve.org/CVERecord?id=CVE-2025-3471",
+    "name": "CVE-2025-3471 - CVE Record",
+    "snippet": "NOTICE —Due to routine maintenance,CVE Servicesfor CNAs will be unavailable on June 11, 2026, between 1:00 PM and 2:00 PM EDT.",
+    "host_name": "www.cve.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

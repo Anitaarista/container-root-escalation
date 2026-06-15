@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://wpscan.com/theme/flixita",
+    "name": "Flixita WordPress Theme Security Vulnerabilities - WPScan",
+    "snippet": "Discover the latest security vulnerabilities affecting Flixita. With WPScan, protect your WordPress site from Flixita theme exploits.",
+    "host_name": "wpscan.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wordpress.org/themes/flixita",
+    "name": "Flixita | WordPress Theme",
+    "snippet": "Lightning Fast Speed & Responsive Theme. Flixita is a responsive and fully customizable theme to create any kind of websites. The advanced admin panel will ...",
+    "host_name": "wordpress.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://snicco.io/vulnerability-disclosure",
+    "name": "WordPress plugin vulnerabilities - snicco",
+    "snippet": "This archive contains the list of all security vulnerabilities in WordPress plugins that we ( responsibly ) disclosed. Most of the vulnerabilities have been ...",
+    "host_name": "snicco.io",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.acunetix.com/vulnerabilities/web/wordpress-plugin-theme-editor-multiple-vulnerabilities-2-1",
+    "name": "WordPress Plugin Theme Editor Multiple Vulnerabilities (2.1)",
+    "snippet": "WordPress Plugin Theme Editor is prone to multiple vulnerabilities, including arbitrary file upload and cross-site request forgery vulnerabilities. A ..",
+    "host_name": "www.acunetix.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=GrINg1GrEZM",
+    "name": "How Hackers Exploit WordPress Plugin Vulnerabilities - YouTube",
+    "snippet": "We're going to look at hackers and why they're attacking wordpress, some of the most common attacks and how vulnerability research.",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.kaspersky.com/blog/vulnerable-wordpress-plugins-and-themes/54228",
+    "name": "WordPress: vulnerabilities in plugins and themes - Kaspersky",
+    "snippet": "But the sheer number of discovered plugin vulnerabilities and related incidents shows that attackers are watching the WordPress ecosystem just ...",
+    "host_name": "www.kaspersky.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Wordpress/comments/1elie04/i_found_300_vulnerabilities_in_wordpress_plugins",
+    "name": "I found 300+ vulnerabilities in WordPress plugins, Ask Me Anything!",
+    "snippet": "If you have questions related to WordPress Security, this is the right place to ask :) Ask Me Anything. Archived post. New comments cannot be ...",
+    "host_name": "www.reddit.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wordfence.com/threat-intel/vulnerabilities/wordpress-themes",
+    "name": "WordPress Theme Vulnerabilities - Wordfence",
+    "snippet": "As a reminder, the Wordfence Intelligence Vulnerability Database API is completely free to query and utilize, both personally and commercially, and contains ...",
+    "host_name": "www.wordfence.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://solidwp.com/blog/wordpress-vulnerability-report-september-17-2025",
+    "name": "WordPress Vulnerability Report — September 17, 2025 - SolidWP",
+    "snippet": "In this report, 199 vulnerabilities have been publicly disclosed. Security patches for 50 of these plugins and themes are now available, ...",
+    "host_name": "solidwp.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/pentesternepal/hacking-into-wordpress-themes-for-cves-and-fun-bdde6c834344",
+    "name": "Hacking into WordPress themes for CVEs and Fun. - Medium",
+    "snippet": "In this writeup, I'll discuss about the research I did on a WordPress theme, which taught me a lot about WordPress themes/Plugins security.",
+    "host_name": "medium.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

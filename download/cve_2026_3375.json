@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-3375",
+    "name": "CVE-2026-3375 Detail - NVD",
+    "snippet": "The LiteSpeed Cache plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the /wp-json/litespeed/v1/notify_ccss and /wp-json ...",
+    "host_name": "nvd.nist.gov",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://freshysites.com/security-bulletins/litespeed-cache-plugin-vulnerability-cve-2026-3375",
+    "name": "LiteSpeed Cache Plugin Vulnerability (CVE-2026-3375) | Freshy",
+    "snippet": "The LiteSpeed Cache plugin for WordPress contains a stored cross-site scripting (XSS) vulnerability in its REST API endpoints that accept ...\nThe LiteSpeed Cache plugin for WordPress contains a stored cross-site scripting (XSS) vulnerability in its REST API endpoints that accept CSS content from QUIC.cloud callbacks.",
+    "host_name": "freshysites.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.litespeedtech.com/2026/05/27/security-update-for-lscwp-cve-2026-3375",
+    "name": "Security Update for LSCWP - LiteSpeed Blog",
+    "snippet": "We have a security update for LiteSpeed Cache for WordPress. This cross-site scripting vulnerability has been assigned CVE-2026-3375.",
+    "host_name": "blog.litespeedtech.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://access.redhat.com/security/cve/cve-2026-3375",
+    "name": "CVE-2026-3375 - Red Hat Customer Portal",
+    "snippet": "The LiteSpeed Cache plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the /wp-json/litespeed/v1/notify_ccss and ...",
+    "host_name": "access.redhat.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sherlockforensics.com/blog/2026-05-27-cve-2026-3375.html",
+    "name": "CVE-2026-3375: LiteSpeed Cache plugin for Cross-site scripting",
+    "snippet": "The LiteSpeed Cache plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the /wp-json/litespeed/v1/notify_ccss and /wp-json/ ...\nThe LiteSpeed Cache plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the /wp-json/litespeed/v1/notify_ccss and /wp-json/litespeed/v1/notify_ucss REST API endpoints in all versions up to, and including, 7.7.",
+    "host_name": "www.sherlockforensics.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

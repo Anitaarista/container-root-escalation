@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.php.net/ChangeLog-8.php",
+    "name": "PHP 8 ChangeLog",
+    "snippet": "Fixed CVE-2026-44928 (In uriparser before 1.0.2, the function family EqualsUri can misclassify two unequal URIs as equal). (CVE-2026-44928). Version 8.5.",
+    "host_name": "www.php.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://php.watch/versions/8.3/releases/8.3.30",
+    "name": "PHP 8.3.30: Downloads, Changelog, News",
+    "snippet": "PHP 8.3 is currently only receiving security fixes. PHP 8.3.30 is not the latest version in the series, and using this release is not ...",
+    "host_name": "php.watch",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.herodevs.com/blog-posts/php-end-of-life-dates-support-timeline-for-every-version-2026",
+    "name": "PHP End-of-Life Dates: Support Timeline for Every Version (2026)",
+    "snippet": "PHP 8.3 entered security-only support at the end of 2025. It will continue receiving critical security patches through December 31, 2027.",
+    "host_name": "www.herodevs.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://maikuolan.github.io/Vulnerability-Charts/php.html",
+    "name": "Vulnerability Charts – PHP - GitHub Pages",
+    "snippet": "patch releases rectify various problems, bugs and so forth current latest version on the 8.3 branch). PHP 8.3.0 – 8.3.30 (2023.11.23 – 2026.01. ...",
+    "host_name": "maikuolan.github.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sentinelone.com/vulnerability-database/cve-2024-8926",
+    "name": "CVE-2024-8926: PHP Command Injection RCE Vulnerability",
+    "snippet": "CVE-2024-8926 is a command injection RCE flaw in PHP versions 8.1.*, 8.2.*, and 8.3.* that bypasses CVE-2024-4577 fixes on Windows systems. This ...",
+    "host_name": "www.sentinelone.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

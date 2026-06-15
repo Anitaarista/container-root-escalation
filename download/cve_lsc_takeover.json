@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://patchstack.com/articles/critical-account-takeover-vulnerability-patched-in-litespeed-cache-plugin",
+    "name": "Critical Account Takeover in LiteSpeed Cache Plugin - Patchstack",
+    "snippet": "05Want to learn more about finding and fixing vulnerabilities? This blog post is about the LiteSpeed plugin vulnerability. If you're a LiteSpeed ...",
+    "host_name": "patchstack.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sentinelone.com/vulnerability-database/cve-2025-12450",
+    "name": "CVE-2025-12450: LiteSpeed Cache WordPress Plugin XSS Flaw",
+    "snippet": "CVE-2025-12450 is a reflected XSS vulnerability in LiteSpeed Cache for WordPress. Learn about its impact, affected versions, and mitigation ...",
+    "host_name": "www.sentinelone.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.tenable.com/plugins/nessus/206971",
+    "name": "WordPress Plugin 'LiteSpeed Cache' < 6.5.0.1. Unauthenticated",
+    "snippet": "The remote WordPress application has a plugin installed that is affected by an unauthenticated account takeover vulnerability.",
+    "host_name": "www.tenable.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://thehackernews.com/2024/09/critical-security-flaw-found-in.html",
+    "name": "Critical Security Flaw Found in LiteSpeed Cache Plugin for WordPress",
+    "snippet": "WordPress LiteSpeed Cache plugin vulnerability could allow unauthenticated account takeover. Update now to fix the issue.",
+    "host_name": "thehackernews.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cve.org/CVERecord?id=CVE-2024-44000",
+    "name": "CVE-2024-44000 - CVE Record",
+    "snippet": "Insufficiently Protected Credentials vulnerability in LiteSpeed Technologies LiteSpeed Cache litespeed-cache allows Authentication Bypass.This ...",
+    "host_name": "www.cve.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

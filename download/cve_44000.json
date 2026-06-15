@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://github.com/absholi7ly/CVE-2024-44000-LiteSpeed-Cache",
+    "name": "absholi7ly/CVE-2024-44000-LiteSpeed-Cache - GitHub",
+    "snippet": "CVE-2024-44000 is a vulnerability in the LiteSpeed Cache plugin, a popular WordPress plugin. This vulnerability affects session management in LiteSpeed ...",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/cve-2024-44000",
+    "name": "CVE-2024-44000 Detail - NVD",
+    "snippet": "Insufficiently Protected Credentials vulnerability in LiteSpeed Technologies LiteSpeed Cache litespeed-cache allows Authentication Bypass.This ...",
+    "host_name": "nvd.nist.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.exploit-db.com/exploits/52099",
+    "name": "Litespeed Cache 6.5.0.1 - Authentication Bypass - Exploit-DB",
+    "snippet": "Litespeed Cache 6.5.0.1 - Authentication Bypass. CVE-2024-44000 . webapps exploit for PHP platform.",
+    "host_name": "www.exploit-db.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.securityweek.com/litespeed-cache-plugin-vulnerability-exposes-millions-of-wordpress-sites-to-attacks",
+    "name": "LiteSpeed Cache Plugin Vulnerability Exposes Millions of",
+    "snippet": "A vulnerability in the LiteSpeed Cache WordPress plugin leads to the exposure of sensitive information, including user cookies.",
+    "host_name": "www.securityweek.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patchstack.com/articles/critical-account-takeover-vulnerability-patched-in-litespeed-cache-plugin",
+    "name": "Critical Account Takeover in LiteSpeed Cache Plugin - Patchstack",
+    "snippet": "05Want to learn more about finding and fixing vulnerabilities? This blog post is about the LiteSpeed plugin vulnerability. If you're a LiteSpeed ...",
+    "host_name": "patchstack.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
